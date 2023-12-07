@@ -6,27 +6,59 @@
 </head>
 <body>
 <main>
-    <h4>Medicos</h4>
     <table class="table" border="1">
         <thead>
         <tr>
             <th>ID</th>
             <th>Nome</th>
             <th>CRM</th>
+            <th>
+                <select id="filtroEspecialidade" th:onchange="filterBySpecialty()">
+                    <option value="">Todas as Especialidades</option>
+                    <option th:each="especialidade : ${especialidadesDisponiveis}" th:value="${especialidade.nome}" th:text="${especialidade.nome}"></option>
+                </select>
+            </th>
             <th>Opções</th>
         </tr>
-        <tr th:each="m : ${medicos}">
-            <td th:text="${m.id}"></td>
-            <td th:text="${m.nome}"></td>
-            <td th:text="${m.crm}"></td>
-            <td>
-                <a th:href="@{/medicos/filtercpm/{crmMedico}(crmMedico=${m.crm})}">Consultas</a>
-                <a th:href="@{/medicos/editar/{idMedico}(idMedico=${m.id})}">Editar</a>
-                <a th:href="@{/medicos/excluir/{crmMedico}(crmMedico=${m.crm})}" onclick="return confirm('Tem certeza de que deseja excluir este médico?')">Excluir</a>
-
-            </td>
-        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="m : ${medicos}">
+                <td th:text="${m.id}"></td>
+                <td th:text="${m.nome}"></td>
+                <td th:text="${m.crm}"></td>
+                <td>
+                    <span th:each="especialidade : ${m.especialidades}" th:text="${especialidade.nome} + ' '"></span>
+                </td>
+                <td>
+                    <a th:href="@{/medicos/filtercpm/{crmMedico}(crmMedico=${m.crm})}">Consultas</a>
+                    <a th:href="@{/medicos/editar/{idMedico}(idMedico=${m.id})}">Editar</a>
+                    <a th:href="@{/medicos/excluir/{crmMedico}(crmMedico=${m.crm})}" onclick="return confirm('Tem certeza de que deseja excluir este médico?')">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
     </table>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        function filterBySpecialty() {
+            var selectedSpecialty = document.getElementById("filtroEspecialidade").value.toLowerCase();
+
+            var tableRows = document.querySelectorAll("tbody tr");
+
+            tableRows.forEach(function (row) {
+                var specialtyColumn = row.querySelector("td:nth-child(4)");
+                var rowSpecialty = specialtyColumn.textContent.trim().toLowerCase();
+
+                if (selectedSpecialty === "" || rowSpecialty.includes(selectedSpecialty)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+        /*]]>*/
+    </script>
 </main>
+
 </body>
+
 </html>

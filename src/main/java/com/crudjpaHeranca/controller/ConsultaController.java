@@ -1,7 +1,6 @@
 package com.crudjpaHeranca.controller;
 
 import com.crudjpaHeranca.model.entity.Consulta;
-import com.crudjpaHeranca.model.entity.Medico;
 import com.crudjpaHeranca.model.repository.ConsultaRepository;
 import com.crudjpaHeranca.model.repository.MedicoRepository;
 import com.crudjpaHeranca.model.repository.PacienteRepository;

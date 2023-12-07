@@ -18,6 +18,14 @@
     <div class="error" th:if="${#fields.hasErrors('crm')}">
       <p th:errors="*{crm}"></p>
     </div>
+    <label>Especialidades:</label>
+    <div th:each="especialidade : ${especialidadesDisponiveis}">
+      <input type="checkbox" th:id="${'especialidade-' + especialidade.id}" th:name="especialidades" th:value="${especialidade.id}" />
+      <label th:for="${'especialidade-' + especialidade.id}" th:text="${especialidade.nome}"></label><br/>
+    </div>
+    <div class="error" th:if="${#fields.hasErrors('especialidades')}">
+      <p th:errors="*{especialidades}"></p>
+    </div>
     <button type="submit">Salvar</button>
   </form>
 </main>
