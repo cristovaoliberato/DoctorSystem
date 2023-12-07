@@ -1,0 +1,15 @@
+INSERT INTO tb_pessoa (tipo, nome, crm) VALUES ('M', 'Dra. Ana', '78901');
+INSERT INTO tb_pessoa (tipo, nome, telefone) VALUES ('P', 'Pedro Santos', '9988776655');
+INSERT INTO tb_pessoa (tipo, nome, crm) VALUES ('M', 'Dr. Paula', '45678');
+INSERT INTO tb_pessoa (tipo, nome, telefone) VALUES ('P', 'Luana Pereira', '9876543210');
+INSERT INTO tb_pessoa (tipo, nome, crm) VALUES ('M', 'Dr. Rafael', '87654');
+INSERT INTO tb_pessoa (tipo, nome, telefone) VALUES ('P', 'Fernanda Alves', '9588451122');
+INSERT INTO tb_pessoa (tipo, nome, crm) VALUES ('M', 'Dr. Vanessa', '23456');
+INSERT INTO tb_pessoa (tipo, nome, telefone) VALUES ('P', 'Ricardo Lima', '9421451122');
+INSERT INTO tb_pessoa (tipo, nome, crm) VALUES ('M', 'Dr. Camila', '76543');
+INSERT INTO tb_pessoa (tipo, nome, telefone) VALUES ('P', 'Gustavo Silva', '8849851122');
+INSERT INTO consulta (data, valor, observacao, medico_id, paciente_id) VALUES ('2023-09-25 16:00:00', 180.00, 'Consulta de acompanhamento', 1, 2);
+INSERT INTO consulta (data, valor, observacao, medico_id, paciente_id) VALUES ('2023-10-15 14:30:00', 200.00, 'Consulta Mensal', 3, 4);
+INSERT INTO consulta (data, valor, observacao, medico_id, paciente_id) VALUES ('2023-11-05 11:00:00', 220.00, 'Consulta de rotina', 5, 6);
+INSERT INTO consulta (data, valor, observacao, medico_id, paciente_id) VALUES ('2023-12-20 10:15:00', 250.00, 'Consulta de avaliação', 7, 8);
+INSERT INTO consulta (data, valor, observacao, medico_id, paciente_id) VALUES ('2023-09-10 09:30:00', 160.00, 'Consulta de rotina', 9, 10);

@@ -1,0 +1,22 @@
+<header class="container" th:fragment="header" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" th:href="@{/home}">Voltar</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/medicos/list}">Médicos</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/pacientes/list}">Pacientes</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/consultas/list}">Consultas</a></li>
+                <li sec:authorize="hasAnyRole('ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/consultas/formCadastro}">Nova Consulta</a></li>
+                <li sec:authorize="hasAnyRole('ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/pacientes/formCadastro}">Novo Paciente</a></li>
+                <li sec:authorize="hasAnyRole('ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/medicos/formCadastro}">Novo Médico</a></li>
+            </ul>
+
+            <form th:action="@{/logout}" method="post" class="form-inline my-2 my-lg-0">
+                <span class="mr-2">Olá <strong sec:authentication="name"></strong></span>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sair</button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+

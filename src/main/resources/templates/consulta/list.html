@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{/fragments/layout :: layout(~{::head},~{::main})}">
+<head th:replace="~{/fragments/head :: head(~{::title},~{})}">
+    <title>Consultas</title>
+</head>
+<body>
+<main>
+    <h4>Listar Todas as Consultas</h4>
+    <table class="table" border="1">
+        <thead>
+        <tr>
+            <th>Data</th>
+            <th>Paciente</th>
+            <th>Médico</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="consulta : ${consultas}">
+            <td th:text="${#temporals.format(consulta.data, 'dd/MM/yyyy HH:mm')}"></td>
+            <td th:text="${consulta.paciente.nome}"></td>
+            <td th:text="${consulta.medico.nome}"></td>
+            <td>
+                <a th:href="@{/consultas/detalharConsulta/{idConsulta}(idConsulta=${consulta.id})}">Detalhar</a>
+                <a th:href="@{/consultas/editar/{idConsulta}(idConsulta=${consulta.id})}">Editar</a>
+                <a th:href="@{/consultas/excluir/{idConsulta}(idConsulta=${consulta.id})}" onclick="return confirm('Tem certeza de que deseja excluir esta consulta?')">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

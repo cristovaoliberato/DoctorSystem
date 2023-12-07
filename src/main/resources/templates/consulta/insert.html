@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{/fragments/layout :: layout(~{::head},~{::main})}">
+<head th:replace="~{/fragments/head :: head(~{::title},~{})}">
+    <title>Consultar</title>
+</head>
+<body>
+<main>
+    <h2>Criar Consulta</h2>
+    <form th:action="@{/consultas/criar}" method="post" th:object="${consulta}">
+        <label for="valor">Valor:</label>
+        <input class="form-control" type="text" id="valor" name="valor" th:field="*{valor}" th:errorclass="is-invalid"/>
+        <div class="error" th:if="${#fields.hasErrors('valor')}">
+            <p th:errors="*{valor}"></p>
+        </div>
+        <label for="observacao">Observação:</label>
+        <textarea class="form-control" type="text" id="observacao" name="observacao" th:field="*{observacao}" th:errorclass="is-invalid"/>
+        <div class="error" th:if="${#fields.hasErrors('observacao')}">
+            <p th:errors="*{observacao}"></p>
+        </div>
+        <label for="medico">Médico:</label>
+        <select id="medico" name="medico.id" th:field="*{medico.id}">
+            <option value="">Selecione um médico</option>
+            <th:block th:each="medico : ${medicos}">
+                <option th:value="${medico.id}" th:text="${medico.nome}"></option>
+            </th:block>
+        </select>
+        <label for="paciente">Paciente:</label>
+        <select id="paciente" name="paciente.id" th:field="*{paciente.id}">
+            <option value="">Selecione um paciente</option>
+            <th:block th:each="paciente : ${pacientes}">
+                <option th:value="${paciente.id}" th:text="${paciente.nome}"></option>
+            </th:block>
+        </select>
+
+
+        <button type="submit">Consultar</button>
+    </form>
+</main>
+</body>
+</html>
+

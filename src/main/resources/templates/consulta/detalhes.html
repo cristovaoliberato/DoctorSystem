@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{/fragments/layout :: layout(~{::head},~{::main})}">
+<head th:replace="~{/fragments/head :: head(~{::title},~{})}">
+    <title th:text="${'Consulta nª ' + consulta.id}"></title>
+</head>
+<body>
+<main>
+    <form  th:action="@{/consultas/atualizar}" method="post">
+        <input type="hidden" th:name="id" th:value="${consulta.id}" />
+        <h1>Data:</h1>
+        <p th:text="${#temporals.format(consulta.data, 'dd/MM/yyyy HH:mm')}"></p>
+        <h1>Valor:</h1>
+        <p th:if="${not editing}" th:text="${consulta.valor}"></p>
+        <input th:if="${editing}" id="valor" name="valor" th:value="${consulta.valor}" />
+        <h1>Observações:</h1>
+        <p th:if="${not editing}" th:text="${consulta.observacao}"></p>
+        <input th:if="${editing}" id="observacao" name="observacao" th:value="${consulta.observacao}"/>
+        <h1>Paciente:</h1>
+        <p th:text="${consulta.paciente.nome}"></p>
+        <input name="paciente.id" type="hidden"  th:value="${consulta.paciente.id}">
+        <h1>Médico:</h1>
+        <p th:text="${consulta.medico.nome}"></p>
+        <input name="medico.id" type="hidden" th:value="${consulta.medico.id}" >
+        <button th:if="${editing}" type="submit">Salvar</button>
+    </form>
+</main>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{/fragments/layout :: layout(~{::head},~{::main})}">
+<head th:replace="~{/fragments/head :: head(~{::title},~{})}">
+    <title th:text="${'Consultas de ' + obj.nome}"></title>
+</head>
+<body>
+<main>
+    <h4>Olá, <span th:text="${obj.nome}"></span></h4>
+    <h4>Consultas</h4>
+    <table class="table" border="1">
+        <thead>
+            <tr>
+                <th>Data</th>
+
+                <th th:if="${medico}">Paciente</th>
+                <th th:if="${not medico}">Médico</th>
+                <th>Médico</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr th:each="o : ${obj.consultas}">
+            <td th:text="${#temporals.format(o.data, 'dd/MM/yyyy HH:mm')}"></td>
+            <td th:if="${medico}" th:text="${o.paciente.nome}"></td>
+            <td th:if="${not medico}" th:text="${o.medico.nome}"></td>
+            <td>
+                <a th:href="@{/consultas/detalharConsulta/{idConsulta}(idConsulta=${o.id})}">Detalhar</a>
+                <a th:href="@{/consultas/editar/{idConsulta}(idConsulta=${o.id})}">Editar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

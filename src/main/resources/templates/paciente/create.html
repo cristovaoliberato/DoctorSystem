@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{/fragments/layout :: layout(~{::head},~{::main})}">
+<head th:replace="~{/fragments/head :: head(~{::title},~{})}">
+  <title>Cadastrar Paciente</title>
+</head>
+<body>
+<main>
+  <h2>Cadastrar Paciente</h2>
+    <container>
+        <form th:action="@{/pacientes/cadastrar}" method="post" th:object="${paciente}">
+            <label for="nome">Nome:</label>
+            <input class="form-control" type="text" id="nome" name="nome" th:field="*{nome}" th:errorclass="is-invalid"/>
+            <div class="error" th:if="${#fields.hasErrors('nome')}">
+                <p th:errors="*{nome}"></p>
+            </div>
+            <label for="telefone">Telefone:</label>
+            <input class="form-control"  type="text" id="telefone" name="telefone" th:field="*{telefone}" th:errorclass="is-invalid"/>
+            <div class="error" th:if="${#fields.hasErrors('telefone')}">
+                <p th:errors="*{telefone}"></p>
+            </div>
+            <button type="submit">Salvar</button>
+
+
+        </form>
+    </container>
+</main>
+</body>
+</html>

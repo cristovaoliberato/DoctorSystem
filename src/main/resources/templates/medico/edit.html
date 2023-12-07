@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{/fragments/layout :: layout(~{::head},~{::main})}">
+<head th:replace="~{/fragments/head :: head(~{::title},~{})}">
+    <title>Editar Médico</title>
+</head>
+<body>
+<main>
+    <h2>Editar Médico</h2>
+    <form th:action="@{/medicos/atualizar}" method="post" th:object="${medico}">
+        <input type="hidden" th:name="id" th:value="*{id}" />
+        <label for="nome">Nome:</label>
+        <input class="form-control" type="text" id="nome" name="nome" th:field="*{nome}" th:errorclass="is-invalid"/>
+        <div class="error" th:if="${#fields.hasErrors('nome')}">
+            <p th:errors="*{nome}"></p>
+        </div>
+        <label for="crm">CRM:</label>
+        <input class="form-control" type="text" id="crm" name="nome" th:field="*{crm}" th:errorclass="is-invalid"/>
+        <div class="error" th:if="${#fields.hasErrors('crm')}">
+            <p th:errors="*{crm}"></p>
+        </div>
+        <button type="submit">Salvar Alterações</button>
+    </form>
+    <br/>
+</main>
+</body>
+</html>
