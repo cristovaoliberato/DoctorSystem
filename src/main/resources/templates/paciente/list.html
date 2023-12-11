@@ -6,28 +6,34 @@
 </head>
 <body>
 <main>
-    <h4>Listar Pacientes</h4>
-    <a th:href="@{/home}">Voltar</a>
-    <table class="table" border="1">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Telefone</th>
-            <th>Opções</th>
-        </tr>
-        </thead>
-        <tr th:each="p : ${pacientes}">
-            <td th:text="${p.id}"></td>
-            <td th:text="${p.nome}"></td>
-            <td th:text="${p.telefone}"></td>
-            <td>
-                <a th:href="@{/pacientes/consultasPaciente/{pacienteId}(pacienteId=${p.id})}">Consultas</a>
-                <a th:href="@{/pacientes/editar/{pacienteId}(pacienteId=${p.id})}">Editar</a>
-                <a th:href="@{/pacientes/excluir/{pacienteId}(pacienteId=${p.id})}" onclick="return confirm('Tem certeza de que deseja excluir este paciente?')">Excluir</a>
-            </td>
-        </tr>
-    </table>
+    <div class="page-container alter">
+        <h4>pacientes - Listar</h4>
+        <a href="#" class="add-patient-button">Adicionar Paciente</a>
+        <div class="tabela">
+            <input type="text" id="filter-input" placeholder="Filtrar por nome">;
+            <a href="#"><i class="fas fa-search"></i></a>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th class="last-child">Opções</th>
+                </tr>
+                </thead>
+                <tr th:each="p : ${pacientes}">
+                    <td th:text="${p.id}"></td>
+                    <td th:text="${p.nome}"></td>
+                    <td th:text="${p.telefone}"></td>
+                    <td  class="last-child">
+                        <a th:href="@{/pacientes/consultasPaciente/{pacienteId}(pacienteId=${p.id})}" title="Consultas"><i class="fas fa-calendar-alt"></i></a>
+                        <a th:href="@{/pacientes/editar/{pacienteId}(pacienteId=${p.id})}" title="Editar"><i class="fas fa-edit"></i></a>
+                        <a th:href="@{/pacientes/excluir/{pacienteId}(pacienteId=${p.id})}" title="Excluir" onclick="return confirm('Tem certeza de que deseja excluir este paciente?')"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </main>
 </body>
 </html>

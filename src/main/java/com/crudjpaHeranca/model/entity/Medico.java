@@ -2,7 +2,6 @@ package com.crudjpaHeranca.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -15,8 +14,8 @@ public class Medico extends Pessoa {
     private String crm;
     @OneToMany(mappedBy = "medico", cascade = CascadeType.REMOVE)
     private List<Consulta> consultas;
-    @OneToOne
-    private Agenda agenda;
+    @OneToMany(mappedBy = "medico", cascade = CascadeType.REMOVE)
+    private List<Horario> horarios;
     @ManyToMany
     @JoinTable(
             name = "medico_especialidade",
@@ -27,12 +26,12 @@ public class Medico extends Pessoa {
         return crm;
     }
 
-    public Agenda getAgenda() {
-        return agenda;
+    public List<Horario> getHorarios() {
+        return horarios;
     }
 
-    public void setAgenda(Agenda agenda) {
-        this.agenda = agenda;
+    public void setHorarios(List<Horario> horarios) {
+        this.horarios = horarios;
     }
 
     public void setCrm(String crm) {
@@ -54,4 +53,5 @@ public class Medico extends Pessoa {
     public void setEspecialidades(List<Especialidade> especialidades) {
         this.especialidades = especialidades;
     }
+
 }

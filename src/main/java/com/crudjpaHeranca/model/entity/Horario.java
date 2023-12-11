@@ -1,11 +1,7 @@
 package com.crudjpaHeranca.model.entity;
-
 import jakarta.persistence.*;
-
 import java.sql.Time;
-import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 public class Horario {
@@ -14,11 +10,24 @@ public class Horario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private boolean disponivel;
+    private boolean fixed;
     private Time inicio;
     private Time fim;
     private Date dia;
-    @ManyToMany(mappedBy = "horarios")
-    private List<Agenda> agendas;
+    @ManyToOne
+    private Medico medico;
+
+    public Horario() {
+    }
+
+    public Horario(boolean disponivel, boolean fixed, Time inicio, Time fim, Date dia, Medico medico) {
+        this.disponivel = disponivel;
+        this.fixed = fixed;
+        this.inicio = inicio;
+        this.fim = fim;
+        this.dia = dia;
+        this.medico = medico;
+    }
 
     public Long getId() {
         return id;
@@ -60,11 +69,20 @@ public class Horario {
         this.dia = dia;
     }
 
-    public List<Agenda> getAgendas() {
-        return agendas;
+
+    public boolean isFixed() {
+        return fixed;
     }
 
-    public void setAgendas(List<Agenda> agendas) {
-        this.agendas = agendas;
+    public void setFixed(boolean fixed) {
+        this.fixed = fixed;
+    }
+
+    public Medico getMedico() {
+        return medico;
+    }
+
+    public void setMedico(Medico medico) {
+        this.medico = medico;
     }
 }

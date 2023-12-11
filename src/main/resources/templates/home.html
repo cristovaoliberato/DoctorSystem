@@ -2,12 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <html th:replace="~{fragments/layout :: layout(~{::head},~{::main})}">
 <head th:replace="~{fragments/head :: head(~{::title},~{})}">
-    <title>Home</title>
+    <title>Tela Inicial</title>
 </head>
-<body>
-
 <main>
-<h2>Bem vindo ao Sistema médico</h2>
-    </main>
-</body>
-</html>
+<div class="page-container">
+    <div class="welcome-container">
+        <div class="welcome-title">Bem-Vindo ao Sistema Médico</div>
+        <div class="welcome-message">A sua plataforma de gestão de saúde.</div>
+    </div>
+    <div class="grid-container">
+        <a th:href="@{/pacientes/list}" class="grid-item">
+            <i class="fas fa-user-injured fa-3x"></i>
+            <h1>Pacientes</h1>
+        </a>
+        <a th:href="@{/consultas/list}" class="grid-item">
+            <i class="fas fa-clipboard fa-3x"></i>
+            <h1>Consultas</h1>
+
+        </a>
+        <a href="#" class="grid-item">
+            <i class="fas fa-calendar-check fa-3x"></i>
+            <h1>Agenda</h1>
+            <a><button class="add-consultation-button">+</button></a>
+        </a>
+    </div>
+</div>
+</main>

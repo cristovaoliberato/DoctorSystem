@@ -23,7 +23,6 @@ public class MedicoRepository {
     public Medico medicoid(Long id){
         return em.find(Medico.class, id);
     }
-
     public void save(Medico medico){
         em.persist(medico);
     }

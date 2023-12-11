@@ -2,6 +2,7 @@ package com.crudjpaHeranca;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.reactive.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -36,6 +37,7 @@ public class SecurityConfiguration {
                                         .requestMatchers("/pacientes/editar/*").hasAnyRole("ASSISTENTE")
                                         .requestMatchers("/consultas/editar/*").hasAnyRole("MEDICO")
                                         .requestMatchers("/*/excluir/*").hasAnyRole("ADMINISTRADOR")
+                                        .requestMatchers("/style.css").permitAll()
                                         .anyRequest() //define que a configuração é válida para qualquer requisição.
                                         .authenticated() //define que o usuário precisa estar autenticado.
                 )
@@ -43,6 +45,7 @@ public class SecurityConfiguration {
                         customizer
                                 .loginPage("/login") //passamos como parâmetro a URL para acesso à página de login que criamos
                                 .defaultSuccessUrl("/home")
+
                                 .permitAll() //define que essa página pode ser acessada por todos, independentemente do usuário estar autenticado ou não.
                 )
                 .httpBasic(withDefaults()) //configura a autenticação básica (usuário e senha)

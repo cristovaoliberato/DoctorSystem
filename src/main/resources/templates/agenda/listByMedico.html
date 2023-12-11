@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/fragments/head :: head(~{::title},~{})}">
+<title>Visualizar Agenda</title>
+</head>
+<body>
+<main>
+  <h2>Visualizar Horários Disponíveis</h2>
+  <table class="table" border="1">
+    <thead>
+    <tr>
+      <th>Data</th>
+      <th>Horário Inicio</th>
+      <th>Horario Fim</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="horario : ${horarios}">
+      <td th:text="${horario.dia}"></td>
+      <td th:text="${horario.inicio}"></td>
+      <td th:text="${horario.fim}"></td>
+    </tr>
+    </tbody>
+  </table>
+</main>
+</body>
+</html>

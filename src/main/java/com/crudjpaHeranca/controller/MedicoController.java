@@ -1,8 +1,6 @@
 package com.crudjpaHeranca.controller;
 
-import com.crudjpaHeranca.model.entity.Agenda;
 import com.crudjpaHeranca.model.entity.Medico;
-import com.crudjpaHeranca.model.repository.AgendaRepository;
 import com.crudjpaHeranca.model.repository.EspecialidadeRepository;
 import com.crudjpaHeranca.model.repository.MedicoRepository;
 import jakarta.transaction.Transactional;
@@ -14,9 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Arrays;
-import java.util.List;
-
 @Transactional
 @Controller
 @RequestMapping("/medicos")
@@ -25,8 +20,7 @@ public class MedicoController {
     private MedicoRepository repository;
     @Autowired
     private EspecialidadeRepository repositoryEspecialidade;
-    @Autowired
-    private AgendaRepository agendaRepository;
+
 
     @GetMapping("/list")
     public ModelAndView list(ModelMap modelMap){
@@ -56,8 +50,6 @@ public class MedicoController {
     {
         if(result.hasErrors())
             return formCadastro(medico);
-        Agenda agenda = new Agenda();
-        medico.setAgenda(agenda);
         repository.save(medico);
         return new ModelAndView("redirect:/medicos/list");
     }
